@@ -1,0 +1,508 @@
+{
+    "products": [
+        {
+            "code_bar": "3033491579714",
+            "product_name": "Velouté fraise – Danone – 500g (4x125g)",
+            "ingredients": "Yaourt (lait) 84,6%, sucre 8,2%, fraise 5%, amidon transformé (E1422), arôme, correcteurs d'acidité (E331, E330)",
+            "nutritional_values": {
+                "energy": 91,
+                "sugar": 12.0,
+                "saturated_fat": 1.5,
+                "salt": 0.1,
+                "fruits_veggies_nuts": 5,
+                "fiber": 0,
+                "protein": 3.0
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Contient sucre ajouté (8,2%) et lactose naturel"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Faible en graisses saturées"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "moderation",
+                    "reason": "Contient lactose pouvant provoquer ballonnements"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Contient yaourt et lactose naturel"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d’arachide"
+                },
+                "allergie_fraise": {
+                    "status": "not_safe",
+                    "reason": "Contient 5% de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130695111393",
+            "product_name": "Selecto Hamoud Boualem – 2L",
+            "ingredients": "Eau, sucre, arôme pomme, CO2, colorant, acide citrique, benzoate de sodium",
+            "nutritional_values": {
+                "energy": 43,
+                "sugar": 10.5,
+                "saturated_fat": 0,
+                "salt": 0.02,
+                "fruits_veggies_nuts": 0,
+                "fiber": 0,
+                "protein": 0
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Contient beaucoup de sucre ajouté"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses"
+                },
+                "hypertension": {
+                    "status": "moderation",
+                    "reason": "Boisson sucrée pouvant impacter santé cardiovasculaire à long terme"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Boisson gazeuse pouvant provoquer ballonnements et irritation"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Sans arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Sans fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Sans cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6194055500272",
+            "product_name": "Harissa du Cap Bon Sicam – 380g",
+            "ingredients": "Piments rouges 80%, ail 4%, coriandre 4%, carvi 2%, sel 2%",
+            "nutritional_values": {
+                "energy": 74,
+                "sugar": 2.5,
+                "saturated_fat": 0.3,
+                "salt": 2.2,
+                "fruits_veggies_nuts": 80,
+                "fiber": 4.2,
+                "protein": 2.1
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "moderation",
+                    "reason": "Risque faible de contamination croisée des épices"
+                },
+                "diabete": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de sucre ajouté"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses saturées"
+                },
+                "hypertension": {
+                    "status": "moderation",
+                    "reason": "Contient 2% de sel"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Piments et ail peuvent irriter l’intestin"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Sans lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Sans arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Sans fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Sans cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130093066325",
+            "product_name": "Ifruit – Ifri – 20cl",
+            "ingredients": "Eau, concentré de jus (pomme, raisin, mûre), sucre, arômes, stabilisants, acide citrique",
+            "nutritional_values": {
+                "energy": 49,
+                "sugar": 11.2,
+                "saturated_fat": 0,
+                "salt": 0.05,
+                "fruits_veggies_nuts": 25,
+                "fiber": 0.3,
+                "protein": 0.2
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Contient sucre ajouté et sucres naturels concentrés"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses"
+                },
+                "hypertension": {
+                    "status": "moderation",
+                    "reason": "Boisson sucrée, consommation excessive déconseillée"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Sucre et acide citrique peuvent irriter l’intestin"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Sans lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Sans arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Sans fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Sans cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130777000010",
+            "product_name": "Farine T45 – Safina – 1 kg",
+            "ingredients": "Farine de blé tendre de qualité supérieure",
+            "nutritional_values": {
+                "energy": 349,
+                "sugar": 1.2,
+                "saturated_fat": 0.2,
+                "salt": 0.01,
+                "fruits_veggies_nuts": 0,
+                "fiber": 2.5,
+                "protein": 10.5
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "Contient du gluten"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Index glycémique élevé pouvant augmenter rapidement la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Riche en gluten et amidon raffiné"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "not_safe",
+                    "reason": "Contient du gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d’arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6291003058004",
+            "product_name": "Bugles Chips Nacho Cheese – Tiffany",
+            "ingredients": "Maïs, huile végétale, sucre, sel, fromage en poudre, arôme nacho",
+            "nutritional_values": {
+                "energy": 538,
+                "sugar": 3.5,
+                "saturated_fat": 16.0,
+                "salt": 1.8,
+                "fruits_veggies_nuts": 0,
+                "fiber": 2.2,
+                "protein": 5.8
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "moderation",
+                    "reason": "Risque de contamination croisée au gluten"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Sucre et glucides rapides (maïs)"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Graisses saturées (huile + fromage en poudre)"
+                },
+                "hypertension": {
+                    "status": "not_safe",
+                    "reason": "Riche en sel"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Graisses, sel et additifs irritants"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Fromage en poudre contient du lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "not_safe",
+                    "reason": "Risque de traces de gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d’arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6133414001999",
+            "product_name": "Kool",
+            "ingredients": "Farine de blé, huile de palme partiellement hydrogénée, sucre, cacao, additifs alimentaires",
+            "nutritional_values": {
+                "energy": 514,
+                "sugar": 28.0,
+                "saturated_fat": 13.0,
+                "salt": 0.6,
+                "fruits_veggies_nuts": 0,
+                "fiber": 1.2,
+                "protein": 4.8
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "Contient de la farine de blé (gluten)"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Riche en sucre et farine blanche"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Graisses saturées et partiellement hydrogénées"
+                },
+                "hypertension": {
+                    "status": "moderation",
+                    "reason": "Contient du sel et des additifs"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Farine raffinée, sucre et graisses irritantes"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "not_safe",
+                    "reason": "Contient du gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d’arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "not_safe",
+                    "reason": "Contient du cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "3176571681003",
+            "product_name": "Lait demi-écrémé brick 1L - Candia",
+            "ingredients": "Lait frais de La Réunion, poudre de lait écrémé, matière grasse du lait",
+            "nutritional_values": {
+                "energy": 47,
+                "sugar": 4.8,
+                "saturated_fat": 1.1,
+                "salt": 0.1,
+                "fruits_veggies_nuts": 0,
+                "fiber": 0,
+                "protein": 3.3
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Contient du lactose (sucre naturel) pouvant augmenter la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Teneur modérée en matières grasses"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Le lactose peut provoquer ballonnements, gaz et douleurs abdominales"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Contient du lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d’arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130234002168",
+            "product_name": "Medina – Cevital – 900 g",
+            "ingredients": "Huiles végétales raffinées (palme, coprah), arôme ghee, antioxydant, colorant, vitamines A, D, E",
+            "nutritional_values": {
+                "energy": 729,
+                "sugar": 0,
+                "saturated_fat": 42.0,
+                "salt": 0.4,
+                "fruits_veggies_nuts": 0,
+                "fiber": 0,
+                "protein": 0
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Riche en graisses, consommation modérée recommandée"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Riche en acides gras saturés (palme, coprah)"
+                },
+                "hypertension": {
+                    "status": "moderation",
+                    "reason": "Excès de graisses saturées peut impacter la santé cardiovasculaire"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Graisses lourdes pouvant provoquer inconfort digestif"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d’arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,307 @@
+// Smart Health Database Schema
+// Multi-role health platform with AI food analysis
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ========================================
+// USER MANAGEMENT
+// ========================================
+
+enum UserRole {
+  ADMIN
+  DOCTOR
+  PATIENT
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  CANCELLED
+}
+
+model User {
+  id       String   @id @default(cuid())
+  email    String   @unique
+  password String
+  role     UserRole
+
+  firstName String
+  lastName  String
+  phone     String?
+  avatar    String? // URL to avatar image
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Role-specific data
+  doctorProfile DoctorProfile?
+  healthProfile HealthProfile?
+
+  // Relationships
+  sentMessages     Message[]  @relation("SentMessages")
+  receivedMessages Message[]  @relation("ReceivedMessages")
+  foodScans        FoodScan[]
+  reports          Report[]
+
+  // Appointments
+  doctorAppointments  Appointment[] @relation("DoctorAppointments")
+  patientAppointments Appointment[] @relation("PatientAppointments")
+
+  // Doctor-Patient relationship
+  doctorPatients DoctorPatient[] @relation("Doctor")
+  patientDoctors DoctorPatient[] @relation("Patient")
+
+  notifications Notification[]
+}
+
+// ========================================
+// DOCTOR PROFILE
+// ========================================
+
+model DoctorProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  specialty       String
+  licenseNumber   String  @unique
+  clinicAddress   String
+  bio             String?
+  consultationFee Float?
+
+  // New fields
+  gender            String?
+  yearsOfExperience Int?
+  spokenLanguages   String? // JSON array: ["Français", "Anglais"]
+  city              String?
+  country           String?
+  consultationMode  String? // "VIDEO", "IN_PERSON", "BOTH"
+
+  // Social media links
+  linkedin       String?
+  whatsapp       String?
+  telegram       String?
+  googleMapsLink String?
+
+  subscriptionStatus SubscriptionStatus @default(PENDING)
+  subscriptionStart  DateTime?
+  subscriptionEnd    DateTime?
+
+  availability String? // JSON string of available slots
+
+  latitude  Float?
+  longitude Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// PATIENT HEALTH PROFILE
+// ========================================
+
+model HealthProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Shared Health information (Accessible by all doctors)
+  birthDate DateTime?
+  gender    String?
+  height    Float? // in cm
+  weight    Float? // in kg
+  bloodType String?
+  diet      String? // Diet type (vegetarian, vegan, etc.)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// DOCTOR-PATIENT RELATIONSHIP (PRIVATE MEDICAL RECORD)
+// ========================================
+
+model DoctorPatient {
+  id String @id @default(cuid())
+
+  doctorId String
+  doctor   User   @relation("Doctor", fields: [doctorId], references: [id], onDelete: Cascade)
+
+  patientId String
+  patient   User   @relation("Patient", fields: [patientId], references: [id], onDelete: Cascade)
+
+  status String  @default("ACTIVE") // ACTIVE, ARCHIVED
+  notes  String? // Private notes for doctor (internal)
+
+  // Clinical Data (Specific to this doctor's folder/dossier)
+  diseases       String? // JSON array
+  allergies      String? // JSON array
+  medications    String? // JSON array
+  medicalHistory String? // JSON array
+  familyHistory  String? // JSON array
+  surgeryHistory String? // JSON array
+
+  // Vitals recorded by this doctor
+  bloodPressure String?
+  heartRate     Int?
+  temperature   Float?
+
+  // Diagnosis & Treatment by this doctor
+  symptoms       String? // JSON array
+  diagnosis      String?
+  treatmentPlan  String? // JSON array: prescriptions
+  examsRequested String? // JSON array
+
+  // Doctor's Private Folder Notes & Recommendations
+  observation     String?
+  recommendations String?
+  documents       String? // JSON array of URLs
+
+  // Consultation
+  nextConsultation   DateTime?
+  consultationReason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([doctorId, patientId])
+}
+
+// ========================================
+// APPOINTMENT SYSTEM
+// ========================================
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+model Appointment {
+  id String @id @default(cuid())
+
+  doctorId String
+  doctor   User   @relation("DoctorAppointments", fields: [doctorId], references: [id], onDelete: Cascade)
+
+  patientId String
+  patient   User   @relation("PatientAppointments", fields: [patientId], references: [id], onDelete: Cascade)
+
+  date     DateTime
+  duration Int               @default(30) // in minutes
+  type     String            @default("CONSULTATION") // CONSULTATION, FOLLOWUP, ETC
+  status   AppointmentStatus @default(PENDING)
+  notes    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// MESSAGING SYSTEM
+// ========================================
+
+model Message {
+  id String @id @default(cuid())
+
+  senderId String
+  sender   User   @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+
+  receiverId String
+  receiver   User   @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  content String
+  read    Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+// ========================================
+// FOOD ANALYSIS
+// ========================================
+
+enum FoodScanResult {
+  SAFE
+  WARNING
+  UNSAFE
+}
+
+model FoodScan {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Product information
+  productName String
+  barcode     String?
+  brand       String?
+  imageUrl    String?
+  ingredients String // JSON array of ingredients
+
+  // Analysis result
+  result               FoodScanResult
+  dangerousIngredients String? // JSON array of problematic ingredients
+  recommendation       String // AI-generated recommendation
+  nutriscore           String?
+
+  createdAt DateTime @default(now())
+}
+
+// ========================================
+// REPORTS & FEEDBACK
+// ========================================
+
+enum ReportStatus {
+  PENDING
+  REVIEWED
+  RESOLVED
+}
+
+model Report {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type    String @default("ISSUE") // ISSUE, FEATURE, ABUSE
+  subject String
+  message String
+
+  // New fields
+  productName String?
+  barcode     String?
+  imageUrl    String?
+
+  status ReportStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// NOTIFICATIONS
+// ========================================
+
+model Notification {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title   String
+  message String
+  type    String // INFO, WARNING, SUCCESS, ERROR
+  link    String?
+  read    Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
