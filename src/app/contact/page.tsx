@@ -15,7 +15,7 @@ export default function ContactPage() {
           <div className="nav-content">
             <Link href="/" className="logo">
               <span className="logo-icon">🏥</span>
-              <span className="logo-text">Smart Health</span>
+              <span className="logo-text">HealthAegis</span>
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -137,11 +137,11 @@ export default function ContactPage() {
         <div className="container">
           <div className="corporate-card glass">
             <div className="corp-header">
-              <h2>À propos de Smart Health Administration</h2>
+              <h2>À propos de HealthAegis Administration</h2>
             </div>
             <div className="corp-body">
               <p>
-                Smart Health est une initiative technologique algérienne visant à moderniser
+                HealthAegis est une initiative technologique algérienne visant à moderniser
                 la relation médecin-patient à travers des outils numériques de pointe.
                 Notre support technique est basé à Alger et travaille quotidiennement pour
                 assurer la disponibilité et la sécurité de vos données de santé.
@@ -201,7 +201,7 @@ export default function ContactPage() {
             <div className="footer-section">
               <div className="logo">
                 <span className="logo-icon">🏥</span>
-                <span className="logo-text">Smart Health</span>
+                <span className="logo-text">HealthAegis</span>
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>
@@ -222,7 +222,7 @@ export default function ContactPage() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; 2026 Smart Health. Tous droits réservés.</p>
+            <p>&copy; 2026 HealthAegis. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

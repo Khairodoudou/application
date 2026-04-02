@@ -46,7 +46,7 @@ export function AdminSidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: AdminSid
                 <div className="sidebar-brand">
                     <Link href="/admin/dashboard" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
                         <span className="logo-icon">🏥</span>
-                        <span className="logo-text">Smart Health</span>
+                        <span className="logo-text">HealthAegis</span>
                     </Link>
                 </div>
 

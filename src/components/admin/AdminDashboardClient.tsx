@@ -170,7 +170,7 @@ export default function AdminDashboardClient({ stats: initialStats, pendingDocto
                 <header className="dashboard-header">
                     <div>
                         <h1>📊 Tableau de Bord</h1>
-                        <p>Vue d'ensemble de la plateforme Smart Health</p>
+                        <p>Vue d'ensemble de la plateforme HealthAegis</p>
                     </div>
                 </header>
 

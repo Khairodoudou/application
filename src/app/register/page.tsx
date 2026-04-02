@@ -85,7 +85,7 @@ export default function RegisterPage() {
           <div className="nav-content">
             <Link href="/" className="logo">
               <span className="logo-icon">🏥</span>
-              <span className="logo-text">Smart Health</span>
+              <span className="logo-text">HealthAegis</span>
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -383,7 +383,7 @@ export default function RegisterPage() {
             <div className="footer-section">
               <div className="logo">
                 <span className="logo-icon">🏥</span>
-                <span className="logo-text">Smart Health</span>
+                <span className="logo-text">HealthAegis</span>
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>
@@ -404,7 +404,7 @@ export default function RegisterPage() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; 2026 Smart Health. Tous droits réservés.</p>
+            <p>&copy; 2026 HealthAegis. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

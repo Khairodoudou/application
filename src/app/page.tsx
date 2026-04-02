@@ -14,7 +14,7 @@ export default function Home() {
           <div className="nav-content">
             <div className="logo">
               <span className="logo-icon">🏥</span>
-              <span className="logo-text">Smart Health</span>
+              <span className="logo-text">HealthAegis</span>
             </div>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -187,7 +187,7 @@ export default function Home() {
         <div className="container">
           <div className="cta-content glass">
             <h2>Prêt à prendre soin de votre santé ?</h2>
-            <p>Rejoignez des milliers d'utilisateurs qui font confiance à Smart Health</p>
+            <p>Rejoignez des milliers d'utilisateurs qui font confiance à HealthAegis</p>
             <div className="cta-buttons">
               <Link href="/register" className="btn btn-primary btn-lg">
                 Créer un compte patient
@@ -207,7 +207,7 @@ export default function Home() {
             <div className="footer-section">
               <div className="logo">
                 <span className="logo-icon">🏥</span>
-                <span className="logo-text">Smart Health</span>
+                <span className="logo-text">HealthAegis</span>
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>
@@ -228,7 +228,7 @@ export default function Home() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; 2026 Smart Health. Tous droits réservés.</p>
+            <p>&copy; 2026 HealthAegis. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

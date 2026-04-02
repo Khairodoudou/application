@@ -14,7 +14,7 @@ export default function AboutPage() {
           <div className="nav-content">
             <Link href="/" className="logo">
               <span className="logo-icon">🏥</span>
-              <span className="logo-text">Smart Health</span>
+              <span className="logo-text">HealthAegis</span>
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -40,7 +40,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="page-hero">
         <div className="container">
-          <h1 className="animate-fade-in">À Propos de Smart Health</h1>
+          <h1 className="animate-fade-in">À Propos de HealthAegis</h1>
           <p className="animate-fade-in" style={{ animationDelay: '0.1s' }}>Révolutionner les soins de santé grâce à la technologie</p>
         </div>
       </section>
@@ -52,7 +52,7 @@ export default function AboutPage() {
             <div className="mission-text">
               <h2>Notre Mission</h2>
               <p>
-                Smart Health a été créé avec une vision claire : rendre les soins de santé
+                HealthAegis a été créé avec une vision claire : rendre les soins de santé
                 plus accessibles, personnalisés et sécurisés grâce à la technologie numérique.
               </p>
               <p>
@@ -162,7 +162,7 @@ export default function AboutPage() {
       <section className="cta">
         <div className="container">
           <div className="cta-content glass">
-            <h2>Rejoignez Smart Health aujourd'hui</h2>
+            <h2>Rejoignez HealthAegis aujourd'hui</h2>
             <p>Commencez votre parcours vers une meilleure gestion de votre santé</p>
             <Link href="/register" className="btn btn-primary btn-lg">
               Créer un compte gratuit
@@ -178,7 +178,7 @@ export default function AboutPage() {
             <div className="footer-section">
               <div className="logo">
                 <span className="logo-icon">🏥</span>
-                <span className="logo-text">Smart Health</span>
+                <span className="logo-text">HealthAegis</span>
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; 2026 Smart Health. Tous droits réservés.</p>
+            <p>&copy; 2026 HealthAegis. Tous droits réservés.</p>
           </div>
         </div>
       </footer>

@@ -49,7 +49,7 @@ export function PatientSidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Patien
                 <div className="sidebar-brand">
                     <Link href="/patient/dashboard" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
                         <span className="logo-icon">🏥</span>
-                        <span className="logo-text">Smart Health</span>
+                        <span className="logo-text">HealthAegis</span>
                     </Link>
                 </div>
 

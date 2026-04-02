@@ -68,7 +68,7 @@ export default function LoginPage() {
           <div className="nav-content">
             <Link href="/" className="logo">
               <span className="logo-icon">🏥</span>
-              <span className="logo-text">Smart Health</span>
+              <span className="logo-text">HealthAegis</span>
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -175,16 +175,6 @@ export default function LoginPage() {
                 />
               </div>
 
-              <div className="form-options">
-                <label className="checkbox-label">
-                  <input type="checkbox" />
-                  <span>Se souvenir de moi</span>
-                </label>
-                <Link href="#" className="forgot-link">
-                  Mot de passe oublié ?
-                </Link>
-              </div>
-
               <button type="submit" className="btn btn-primary btn-lg btn-full">
                 Se connecter
               </button>
@@ -209,7 +199,7 @@ export default function LoginPage() {
             <div className="footer-section">
               <div className="logo">
                 <span className="logo-icon">🏥</span>
-                <span className="logo-text">Smart Health</span>
+                <span className="logo-text">HealthAegis</span>
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>
@@ -230,7 +220,7 @@ export default function LoginPage() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; 2026 Smart Health. Tous droits réservés.</p>
+            <p>&copy; 2026 HealthAegis. Tous droits réservés.</p>
           </div>
         </div>
       </footer>
