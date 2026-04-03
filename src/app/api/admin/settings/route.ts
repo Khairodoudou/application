@@ -12,7 +12,7 @@ export async function GET() {
             settings = await prisma.appSetting.create({
                 data: {
                     id: "global",
-                    supportEmail: "contact@smarthealth.com",
+                    supportEmail: "contact@HealthAegis.com",
                     adminPhone: "+33 1 23 45 67 89",
                     headOffice: "123 Rue de la Santé, Paris, France",
                     facebook: "https://facebook.com/smarthealth",
@@ -48,7 +48,7 @@ export async function PUT(req: Request) {
             },
             create: {
                 id: "global",
-                supportEmail: supportEmail || "contact@smarthealth.com",
+                supportEmail: supportEmail || "contact@HealthAegis.com",
                 adminPhone: adminPhone || "+33 1 23 45 67 89",
                 headOffice: headOffice || "123 Rue de la Santé, Paris, France",
                 facebook: facebook || "",

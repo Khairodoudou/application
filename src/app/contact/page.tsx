@@ -8,7 +8,7 @@ import { FaPhone, FaMapMarkerAlt, FaLinkedin, FaInstagram, FaFacebook } from "re
 export default function ContactPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [settings, setSettings] = useState({
-    supportEmail: "contact@smarthealth.com",
+    supportEmail: "contact@HealthAegis.com",
     adminPhone: "+33 1 23 45 67 89",
     headOffice: "123 Rue de la Santé, Paris, France",
     facebook: "https://facebook.com/smarthealth",
@@ -23,7 +23,7 @@ export default function ContactPage() {
       .then(data => {
         if (!data.error) {
           setSettings({
-            supportEmail: data.supportEmail || "contact@smarthealth.com",
+            supportEmail: data.supportEmail || "contact@HealthAegis.com",
             adminPhone: data.adminPhone || "+33 1 23 45 67 89",
             headOffice: data.headOffice || "123 Rue de la Santé, Paris, France",
             facebook: data.facebook || "https://facebook.com/smarthealth",
@@ -193,13 +193,6 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="faq-item card">
-              <h3>Mes données sont-elles stockées localement ?</h3>
-              <p>
-                Oui, l'intégrité et la confidentialité des données sont gérées
-                selon les normes de sécurité les plus strictes.
-              </p>
-            </div>
 
             <div className="faq-item card">
               <h3>Puis-je changer de médecin traitant sur la plateforme ?</h3>
@@ -208,6 +201,32 @@ export default function ContactPage() {
                 selon vos besoins de santé spécifiques.
               </p>
             </div>
+
+
+            <div className="faq-item card">
+              <h3>Comment annuler ou reporter un rendez-vous ?</h3>
+              <p>
+                Depuis votre espace patient, accédez à "Mes rendez-vous" et sélectionnez
+                l'option d'annulation ou de report au moins 24h à l'avance.
+              </p>
+            </div>
+
+            <div className="faq-item card">
+              <h3>La plateforme est-elle accessible sur mobile ?</h3>
+              <p>
+                Oui, HealthAegis est entièrement responsive et fonctionne parfaitement
+                sur smartphone, tablette et ordinateur, sans installation requise.
+              </p>
+            </div>
+
+            <div className="faq-item card">
+              <h3>Comment sont protégées mes données médicales ?</h3>
+              <p>
+                Vos données sont chiffrées en transit et au repos selon les standards
+                les plus stricts. Seuls vous et vos médecins autorisés y ont accès.
+              </p>
+            </div>
+
           </div>
         </div>
       </section>
