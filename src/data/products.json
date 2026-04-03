@@ -44,7 +44,7 @@
                 },
                 "allergie_arachide": {
                     "status": "safe",
-                    "reason": "Ne contient pas d’arachide"
+                    "reason": "Ne contient pas d'arachide"
                 },
                 "allergie_fraise": {
                     "status": "not_safe",
@@ -144,7 +144,7 @@
                 },
                 "colon_irritable": {
                     "status": "not_safe",
-                    "reason": "Piments et ail peuvent irriter l’intestin"
+                    "reason": "Piments et ail peuvent irriter l'intestin"
                 },
                 "intolerance_lactose": {
                     "status": "safe",
@@ -200,7 +200,7 @@
                 },
                 "colon_irritable": {
                     "status": "not_safe",
-                    "reason": "Sucre et acide citrique peuvent irriter l’intestin"
+                    "reason": "Sucre et acide citrique peuvent irriter l'intestin"
                 },
                 "intolerance_lactose": {
                     "status": "safe",
@@ -268,7 +268,7 @@
                 },
                 "allergie_arachide": {
                     "status": "safe",
-                    "reason": "Ne contient pas d’arachide"
+                    "reason": "Ne contient pas d'arachide"
                 },
                 "allergie_fraise": {
                     "status": "safe",
@@ -324,7 +324,7 @@
                 },
                 "allergie_arachide": {
                     "status": "safe",
-                    "reason": "Ne contient pas d’arachide"
+                    "reason": "Ne contient pas d'arachide"
                 },
                 "allergie_fraise": {
                     "status": "safe",
@@ -380,7 +380,7 @@
                 },
                 "allergie_arachide": {
                     "status": "safe",
-                    "reason": "Ne contient pas d’arachide"
+                    "reason": "Ne contient pas d'arachide"
                 },
                 "allergie_fraise": {
                     "status": "safe",
@@ -436,7 +436,7 @@
                 },
                 "allergie_arachide": {
                     "status": "safe",
-                    "reason": "Ne contient pas d’arachide"
+                    "reason": "Ne contient pas d'arachide"
                 },
                 "allergie_fraise": {
                     "status": "safe",
@@ -492,7 +492,7 @@
                 },
                 "allergie_arachide": {
                     "status": "safe",
-                    "reason": "Ne contient pas d’arachide"
+                    "reason": "Ne contient pas d'arachide"
                 },
                 "allergie_fraise": {
                     "status": "safe",
@@ -501,6 +501,566 @@
                 "allergie_cacao": {
                     "status": "safe",
                     "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130760003349",
+            "product_name": "Plain fresh cheese – Soummam – 90g",
+            "ingredients": "Lait reconstitué écrémé, crème fraîche, ferments lactiques, présure",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": null,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de sucre ajouté significatif"
+                },
+                "hypercholesterolemie": {
+                    "status": "moderation",
+                    "reason": "Contient crème fraîche donc des graisses saturées. Ce n'est pas interdit, mais il faut limiter la quantité."
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "moderation",
+                    "reason": "Peut provoquer ballonnements et inconfort car il contient du lactose"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Contient du lait et du lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6133566000079",
+            "product_name": "Margarine – Many – 500g",
+            "ingredients": "Huiles et graisses végétales (palme, palmiste, soja/tournesol) 82%, eau, sel. SIN471, SIN322, SIN202 (1g/kg), SIN270, SIN160a(i) (200g/kg)",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": 0,
+                "saturated_fat": null,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": 0,
+                "protein": 0
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de sucre ajouté"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Produit riche en graisses saturées pouvant augmenter le LDL (mauvais cholestérol)"
+                },
+                "hypertension": {
+                    "status": "not_safe",
+                    "reason": "Contient du sel pouvant contribuer à l'augmentation de la pression artérielle en cas de consommation excessive"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "La teneur élevée en matières grasses peut provoquer des troubles digestifs chez les personnes sensibles"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130433000354",
+            "product_name": "Candy Choco – Candia – 20cl",
+            "ingredients": "Lait partiellement écrémé reconstitué 90%, chocolat en poudre 5% (cacao, sucre, arôme vanille), sucre, vitamines, stabilisants (SIN471, SIN412, SIN407, SIN450), épaississant (SIN1422)",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": null,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "L'origine de l'amidon modifié (E1422) n'étant pas précisée, un risque de gluten ne peut être totalement exclu"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Contient du sucre ajouté pouvant augmenter rapidement la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "La présence de sucres et de matières grasses laitières peut contribuer au déséquilibre lipidique en cas de consommation excessive"
+                },
+                "hypertension": {
+                    "status": "moderation",
+                    "reason": "Pas fortement salé, mais contient additifs phosphatés (E450), à consommer modérément"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "La présence de lactose, sucre et carraghénane peut provoquer ballonnements et irritation intestinale"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Contient du lait et du lactose pouvant provoquer une réaction chez les personnes intolérantes"
+                },
+                "intolerance_gluten": {
+                    "status": "not_safe",
+                    "reason": "L'origine de l'amidon modifié (E1422) n'étant pas précisée, présence possible de gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "not_safe",
+                    "reason": "Contient du cacao pouvant déclencher une réaction chez les personnes allergiques"
+                }
+            }
+        },
+        {
+            "code_bar": "3265478891001",
+            "product_name": "Mayonnaise – Lesieur – 235g",
+            "ingredients": "Huiles végétales (colza 66,5%, tournesol 3,5%), eau, vinaigre, jaune d'œuf frais (5%), sel, sucre, amidon modifié, jus concentré de citron, acide citrique, gomme xanthane, lutéine, extrait de paprika, E385, arôme",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": null,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "L'amidon modifié est mentionné sans précision de source, l'absence totale de gluten ne peut être confirmée"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Contient une petite quantité de sucre mais reste principalement composé de matières grasses"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Riche en matières grasses pouvant favoriser l'augmentation du cholestérol en cas de consommation excessive"
+                },
+                "hypertension": {
+                    "status": "not_safe",
+                    "reason": "La présence de sel peut contribuer à l'augmentation de la pression artérielle si consommé fréquemment"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Sa forte teneur en matières grasses peut ralentir la digestion et provoquer des troubles digestifs"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten déclaré"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130837000233",
+            "product_name": "Couscous moyen – Amor Benamor – 1kg",
+            "ingredients": "Semoule 100% de blé dur de qualité supérieure",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": 0,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "Composé à 100% de blé dur, une céréale contenant naturellement du gluten"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "La semoule est riche en glucides pouvant augmenter la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses saturées"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Le blé peut être difficile à digérer chez certaines personnes sensibles"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "not_safe",
+                    "reason": "Composé à 100% de blé dur contenant naturellement du gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130818000023",
+            "product_name": "Tip Top – Tammy – 16",
+            "ingredients": "Eau traitée, lait sec, fromage, beurre, protéines de lactosérum, sels fondants (SIN452 polyphosphate, SIN450 diphosphate, SIN331 citrate de sodium, SIN339 phosphate de sodium), acide citrique (SIN330)",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": null,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "moderation",
+                    "reason": "Non garanti sûr à 100% pour les personnes cœliaques en raison du risque de contamination croisée dans le processus de fabrication"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Contient très peu de glucides, mais attention à la portion et au sel"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Contient beurre et protéines laitières, donc matières grasses saturées pouvant augmenter le cholestérol"
+                },
+                "hypertension": {
+                    "status": "not_safe",
+                    "reason": "Les sels fondants et phosphates augmentent la teneur en sodium, pouvant élever la pression artérielle"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Les fromages transformés et les phosphates peuvent provoquer ballonnements ou inconfort digestif"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Contient lait sec, beurre et protéines de lactosérum, donc présence de lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten déclaré"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6130384000182",
+            "product_name": "Tomato Conserve Cab – 160da – 400g",
+            "ingredients": "Tomate, sel. Résidu sec 28% minimum",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": 0,
+                "salt": null,
+                "fruits_veggies_nuts": 100,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "Les personnes cœliaques ont un système digestif très sensible et les aliments acides comme la tomate peuvent parfois irriter l'intestin"
+                },
+                "diabete": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de sucre ajouté"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses saturées"
+                },
+                "hypertension": {
+                    "status": "not_safe",
+                    "reason": "Contient du sel ajouté pouvant contribuer à l'élévation de la pression artérielle"
+                },
+                "colon_irritable": {
+                    "status": "not_safe",
+                    "reason": "Les tomates acides peuvent provoquer inconfort digestif ou reflux chez certaines personnes sensibles"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Sans lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Sans arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Sans fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Sans cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6132500710371",
+            "product_name": "El Mordjene pâte à tartiner – CEBON – 700g",
+            "ingredients": "Sucre, huile de palme, noisettes, lait écrémé en poudre, lactosérum, poudre de cacao, émulsifiants: lécithine, arôme vanille",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": null,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "moderation",
+                    "reason": "Non garanti sûr à 100% pour les personnes cœliaques en raison du risque de contamination croisée dans le processus de fabrication"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Contient beaucoup de sucre ajouté pouvant augmenter fortement la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "not_safe",
+                    "reason": "Présence d'huile de palme riche en graisses saturées pouvant augmenter le cholestérol"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "moderation",
+                    "reason": "L'huile de palme et le lactose peuvent provoquer inconfort digestif ou ballonnements"
+                },
+                "intolerance_lactose": {
+                    "status": "not_safe",
+                    "reason": "Contient lait écrémé en poudre et lactosérum"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten déclaré"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Ne contient pas d'arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de fraise"
+                },
+                "allergie_cacao": {
+                    "status": "not_safe",
+                    "reason": "Contient de la poudre de cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6131437000913",
+            "product_name": "Pâtes coude 6 – Extra – 500g",
+            "ingredients": "100% semoule de blé dur",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": 0,
+                "salt": null,
+                "fruits_veggies_nuts": 0,
+                "fiber": null,
+                "protein": null
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "not_safe",
+                    "reason": "Composé uniquement de blé dur qui contient naturellement du gluten"
+                },
+                "diabete": {
+                    "status": "moderation",
+                    "reason": "Riche en glucides, peut provoquer une hausse rapide de la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses saturées"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Faible en sel"
+                },
+                "colon_irritable": {
+                    "status": "safe",
+                    "reason": "Généralement bien toléré en portion raisonnable"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Sans lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten ajouté (semoule pure)"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Sans arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Sans fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Sans cacao"
+                }
+            }
+        },
+        {
+            "code_bar": "6132500710272",
+            "product_name": "Miel el mordjene – Cebon – 1kg",
+            "ingredients": "Sucre blanc, eau, arôme naturel",
+            "nutritional_values": {
+                "energy": null,
+                "sugar": null,
+                "saturated_fat": 0,
+                "salt": 0,
+                "fruits_veggies_nuts": 0,
+                "fiber": 0,
+                "protein": 0
+            },
+            "conditions": {
+                "coeliaque": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de gluten"
+                },
+                "diabete": {
+                    "status": "not_safe",
+                    "reason": "Contient beaucoup de sucre ajouté pouvant provoquer une hausse rapide de la glycémie"
+                },
+                "hypercholesterolemie": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de graisses"
+                },
+                "hypertension": {
+                    "status": "safe",
+                    "reason": "Ne contient pas de sel"
+                },
+                "colon_irritable": {
+                    "status": "moderation",
+                    "reason": "Le sucre concentré peut provoquer ballonnements ou inconfort digestif chez certaines personnes sensibles"
+                },
+                "intolerance_lactose": {
+                    "status": "safe",
+                    "reason": "Sans lactose"
+                },
+                "intolerance_gluten": {
+                    "status": "safe",
+                    "reason": "Sans gluten"
+                },
+                "allergie_arachide": {
+                    "status": "safe",
+                    "reason": "Sans arachide"
+                },
+                "allergie_fraise": {
+                    "status": "safe",
+                    "reason": "Sans fraise"
+                },
+                "allergie_cacao": {
+                    "status": "safe",
+                    "reason": "Sans cacao"
                 }
             }
         }
