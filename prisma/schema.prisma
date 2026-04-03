@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "libsql"
+  url      = env("TURSO_DATABASE_URL")
+  authToken = env("TURSO_AUTH_TOKEN")
 }
 
 // ========================================
