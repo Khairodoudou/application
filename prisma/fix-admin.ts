@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
     console.log('Enforcing single admin account...');
 
-    const email = 'admin@smarthealth.com';
+    const email = 'dahloumdouniahana@gmail.com';
     const password = 'password123';
     const hashedPassword = await hash(password, 10);
 
