@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -24,3 +26,4 @@ export default async function AdminReportsPage() {
 
     return <AdminReportsClient reports={reports} />;
 }
+

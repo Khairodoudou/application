@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 
 "use client";
 
@@ -760,3 +762,4 @@ export default function AdminSettings() {
         </div>
     );
 }
+

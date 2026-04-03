@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { prisma } from "@/lib/prisma";
 import AdminDoctorsClient from "@/components/admin/AdminDoctorsClient";
 
@@ -40,3 +42,4 @@ export default async function AdminDoctorsPage() {
         />
     );
 }
+
