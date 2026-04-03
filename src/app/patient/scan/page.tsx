@@ -26,6 +26,38 @@ const DISEASES = [
   { id: "hypothyroidie", label: "Hypothyroïdie" }
 ];
 
+const SYMPTOMS = [
+  "Fièvre",
+  "Fatigue intense",
+  "Perte d'appétit",
+  "Perte de poids sans raison",
+  "Sueurs nocturnes",
+  "Douleurs corporelles ou articulaires",
+  "Mal de tête",
+  "Toux persistante ou sèche",
+  "Éternuements fréquents",
+  "Nez bouché ou qui coule",
+  "Mal de gorge",
+  "Difficulté à respirer ou oppression thoracique",
+  "Nausées",
+  "Vomissements",
+  "Diarrhée",
+  "Constipation",
+  "Douleurs ou crampes abdominales",
+  "Ballonnements",
+  "Douleur ou pression dans la poitrine",
+  "Palpitations ou rythme cardiaque rapide",
+  "Essoufflement à l'effort",
+  "Gonflement des pieds ou des chevilles",
+  "Étourdissements ou évanouissements",
+  "Éruptions cutanées ou démangeaisons",
+  "Rougeurs ou plaies sur la peau",
+  "Boutons ou cloques inhabituels",
+  "Vertiges",
+  "Engourdissement ou faiblesse des membres",
+  "Difficulté de concentration ou troubles de la mémoire"
+];
+
 export default function ScanPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scanMethod, setScanMethod] = useState<"barcode" | "manual">("barcode");
@@ -36,6 +68,7 @@ export default function ScanPage() {
   const [scanResult, setScanResult] = useState<any>(null);
   const [isScanning, setIsScanning] = useState(false);
   const [selectedDiseases, setSelectedDiseases] = useState<string[]>([]);
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [barcodeError, setBarcodeError] = useState<string | null>(null);
@@ -150,11 +183,26 @@ export default function ScanPage() {
     e.preventDefault();
     setIsScanning(true);
 
+    // Build final text: merge free text with selected symptoms
+    const symptomsText = selectedSymptoms.length > 0
+      ? selectedSymptoms.join(", ")
+      : "";
+    const freeText = manualData.description.trim();
+    const combinedText = freeText && symptomsText
+      ? `${freeText}. Symptômes sélectionnés : ${symptomsText}`
+      : freeText || symptomsText;
+
+    if (!combinedText) {
+      alert("Veuillez décrire vos symptômes ou en sélectionner depuis la liste.");
+      setIsScanning(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/analyze-medical", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: manualData.description }),
+        body: JSON.stringify({ text: combinedText }),
       });
 
       if (!response.ok) throw new Error("Erreur d'analyse");
@@ -173,6 +221,7 @@ export default function ScanPage() {
     setScanResult(null);
     setBarcode("");
     setManualData({ description: "" });
+    setSelectedSymptoms([]);
     setImagePreview(null);
   };
 
@@ -336,17 +385,63 @@ export default function ScanPage() {
                         className="input textarea"
                         value={manualData.description}
                         onChange={(e) => setManualData({ ...manualData, description: e.target.value })}
-                        rows={6}
+                        rows={5}
                         placeholder="Ex: J'ai une douleur à la poitrine et je me sens essoufflé depuis ce matin..."
-                        required
                       />
                       <small>ClinicalBERT analysera votre texte pour extraire les données médicales clés.</small>
+                    </div>
+
+                    {/* Symptom selection */}
+                    <div className="symptom-selector">
+                      <div className="symptom-selector-header">
+                        <span className="symptom-selector-icon">🩻</span>
+                        <div>
+                          <h4>Sélection des symptômes</h4>
+                          <p>Cochez les symptômes qui correspondent à votre état — ils seront intégrés à l'analyse.</p>
+                        </div>
+                      </div>
+
+                      {selectedSymptoms.length > 0 && (
+                        <div className="symptom-selected-bar">
+                          <span>✅ {selectedSymptoms.length} symptôme{selectedSymptoms.length > 1 ? 's' : ''} sélectionné{selectedSymptoms.length > 1 ? 's' : ''}</span>
+                          <button
+                            type="button"
+                            className="symptom-clear-btn"
+                            onClick={() => setSelectedSymptoms([])}
+                          >
+                            Tout effacer
+                          </button>
+                        </div>
+                      )}
+
+                      <div className="symptom-grid">
+                        {SYMPTOMS.map((symptom) => (
+                          <label
+                            key={symptom}
+                            className={`symptom-chip ${selectedSymptoms.includes(symptom) ? 'active' : ''}`}
+                          >
+                            <input
+                              type="checkbox"
+                              className="symptom-checkbox"
+                              checked={selectedSymptoms.includes(symptom)}
+                              onChange={() => {
+                                setSelectedSymptoms(prev =>
+                                  prev.includes(symptom)
+                                    ? prev.filter(s => s !== symptom)
+                                    : [...prev, symptom]
+                                );
+                              }}
+                            />
+                            <span className="symptom-chip-label">{symptom}</span>
+                          </label>
+                        ))}
+                      </div>
                     </div>
 
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg btn-full"
-                      disabled={isScanning}
+                      disabled={isScanning || (manualData.description.trim() === '' && selectedSymptoms.length === 0)}
                     >
                       {isScanning ? (
                         <>
@@ -356,6 +451,11 @@ export default function ScanPage() {
                         <><span>🤖</span> Lancer l'analyse ClinicalBERT</>
                       )}
                     </button>
+                    {manualData.description.trim() === '' && selectedSymptoms.length === 0 && (
+                      <p style={{ fontSize: '0.8rem', color: 'var(--color-danger)', marginTop: '0.5rem', textAlign: 'center' }}>
+                        Veuillez décrire vos symptômes ou en sélectionner dans la liste.
+                      </p>
+                    )}
                   </form>
                 </div>
               )}
@@ -936,6 +1036,143 @@ export default function ScanPage() {
         .btn-full:disabled {
           opacity: 0.6;
           cursor: not-allowed;
+        }
+
+        /* ========================================
+           SYMPTOM SELECTOR
+           ======================================== */
+        .symptom-selector {
+          margin-bottom: 1.75rem;
+          background: var(--color-bg);
+          border: 1.5px solid var(--color-border);
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+        }
+
+        .symptom-selector-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.875rem;
+          padding: 1.125rem 1.25rem;
+          background: hsla(210, 100%, 56%, 0.06);
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .symptom-selector-icon {
+          font-size: 1.6rem;
+          flex-shrink: 0;
+          line-height: 1;
+          margin-top: 0.1rem;
+        }
+
+        .symptom-selector-header h4 {
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: var(--color-text);
+          margin: 0 0 0.2rem;
+        }
+
+        .symptom-selector-header p {
+          font-size: 0.8rem;
+          color: var(--color-text-secondary);
+          margin: 0;
+          line-height: 1.45;
+        }
+
+        .symptom-selected-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.6rem 1.25rem;
+          background: hsla(142, 70%, 50%, 0.1);
+          border-bottom: 1px solid hsla(142, 70%, 50%, 0.2);
+          font-size: 0.82rem;
+          color: hsl(142, 60%, 38%);
+          font-weight: 600;
+          gap: 0.75rem;
+        }
+
+        .symptom-clear-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: var(--color-danger, #e53e3e);
+          font-size: 0.78rem;
+          font-weight: 600;
+          padding: 0.2rem 0.5rem;
+          border-radius: var(--radius-sm);
+          transition: background 0.15s ease;
+          white-space: nowrap;
+        }
+
+        .symptom-clear-btn:hover {
+          background: hsla(0, 80%, 55%, 0.1);
+        }
+
+        .symptom-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+          gap: 0.55rem;
+          padding: 1rem 1.25rem;
+        }
+
+        .symptom-chip {
+          display: flex;
+          align-items: center;
+          gap: 0.55rem;
+          padding: 0.525rem 0.75rem;
+          border-radius: var(--radius-lg);
+          border: 1.5px solid var(--color-border);
+          background: var(--color-bg-secondary);
+          cursor: pointer;
+          transition: all 0.18s ease;
+          user-select: none;
+        }
+
+        .symptom-chip:hover {
+          border-color: var(--color-primary);
+          background: hsla(210, 100%, 56%, 0.06);
+          transform: translateY(-1px);
+        }
+
+        .symptom-chip.active {
+          border-color: var(--color-primary);
+          background: hsla(210, 100%, 56%, 0.12);
+          box-shadow: 0 0 0 2px hsla(210, 100%, 56%, 0.18);
+        }
+
+        .symptom-checkbox {
+          width: 15px;
+          height: 15px;
+          flex-shrink: 0;
+          accent-color: var(--color-primary);
+          cursor: pointer;
+        }
+
+        .symptom-chip-label {
+          font-size: 0.815rem;
+          color: var(--color-text);
+          line-height: 1.3;
+          font-weight: 500;
+        }
+
+        .symptom-chip.active .symptom-chip-label {
+          color: var(--color-primary);
+          font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+          .symptom-grid {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.45rem;
+            padding: 0.75rem 0.875rem;
+          }
+          .symptom-chip {
+            padding: 0.45rem 0.6rem;
+          }
+          .symptom-chip-label {
+            font-size: 0.78rem;
+          }
         }
 
         /* ========================================
