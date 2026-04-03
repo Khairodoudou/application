@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -67,8 +68,7 @@ export default function LoginPage() {
         <div className="container">
           <div className="nav-content">
             <Link href="/" className="logo">
-              <span className="logo-icon">🏥</span>
-              <span className="logo-text">HealthAegis</span>
+              <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -198,8 +198,7 @@ export default function LoginPage() {
           <div className="footer-content">
             <div className="footer-section">
               <div className="logo">
-                <span className="logo-icon">🏥</span>
-                <span className="logo-text">HealthAegis</span>
+                <Image src="/logo.png" alt="HealthAegis" width={120} height={34} className="logo-img" />
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>

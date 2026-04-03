@@ -305,3 +305,21 @@ model Notification {
 
   createdAt DateTime @default(now())
 }
+
+// ========================================
+// APPLICATION SETTINGS
+// ========================================
+
+model AppSetting {
+  id           String @id @default("global")
+  supportEmail String @default("contact@smarthealth.com")
+  adminPhone   String @default("+33 1 23 45 67 89")
+  headOffice   String @default("123 Rue de la Santé, Paris, France")
+
+  facebook      String? @default("https://facebook.com/smarthealth")
+  instagram     String? @default("https://instagram.com/smarthealth")
+  linkedin      String? @default("https://linkedin.com/company/smarthealth")
+  googleMapsUrl String? @default("https://www.google.com/maps?q=Alger,Algérie&t=&z=6&ie=UTF8&iwloc=&output=embed")
+
+  updatedAt DateTime @updatedAt
+}

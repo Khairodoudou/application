@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
     FiGrid,
@@ -45,8 +46,7 @@ export function AdminSidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: AdminSid
                 {/* Branding */}
                 <div className="sidebar-brand">
                     <Link href="/admin/dashboard" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
-                        <span className="logo-icon">🏥</span>
-                        <span className="logo-text">HealthAegis</span>
+                        <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
                     </Link>
                 </div>
 

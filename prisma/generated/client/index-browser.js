@@ -261,6 +261,18 @@ exports.Prisma.NotificationScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.AppSettingScalarFieldEnum = {
+  id: 'id',
+  supportEmail: 'supportEmail',
+  adminPhone: 'adminPhone',
+  headOffice: 'headOffice',
+  facebook: 'facebook',
+  instagram: 'instagram',
+  linkedin: 'linkedin',
+  googleMapsUrl: 'googleMapsUrl',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -311,7 +323,8 @@ exports.Prisma.ModelName = {
   Message: 'Message',
   FoodScan: 'FoodScan',
   Report: 'Report',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  AppSetting: 'AppSetting'
 };
 
 /**

@@ -21,6 +21,7 @@ export default function AdminSettings() {
         supportEmail: "contact@smarthealth.com",
         headOffice: "123 Rue de la Santé, Paris, France",
         adminPhone: "+33 1 23 45 67 89",
+        googleMapsUrl: "https://www.google.com/maps?q=Alger,Algérie&t=&z=6&ie=UTF8&iwloc=&output=embed",
         socialLinks: {
             facebook: "https://facebook.com/smarthealth",
             instagram: "https://instagram.com/smarthealth",
@@ -37,7 +38,52 @@ export default function AdminSettings() {
                 if (!data.error) setUser(data);
             })
             .catch(console.error);
+
+        fetch("/api/admin/settings")
+            .then(res => res.json())
+            .then(data => {
+                if (!data.error) {
+                    setContactSettings({
+                        supportEmail: data.supportEmail || "contact@smarthealth.com",
+                        headOffice: data.headOffice || "",
+                        adminPhone: data.adminPhone || "",
+                        googleMapsUrl: data.googleMapsUrl || "https://www.google.com/maps?q=Alger,Algérie&t=&z=6&ie=UTF8&iwloc=&output=embed",
+                        socialLinks: {
+                            facebook: data.facebook || "",
+                            instagram: data.instagram || "",
+                            linkedin: data.linkedin || ""
+                        }
+                    });
+                }
+            })
+            .catch(console.error);
     }, []);
+
+    const handleSaveContact = async () => {
+        try {
+            const res = await fetch("/api/admin/settings", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    supportEmail: contactSettings.supportEmail,
+                    headOffice: contactSettings.headOffice,
+                    adminPhone: contactSettings.adminPhone,
+                    facebook: contactSettings.socialLinks.facebook,
+                    instagram: contactSettings.socialLinks.instagram,
+                    linkedin: contactSettings.socialLinks.linkedin,
+                    googleMapsUrl: contactSettings.googleMapsUrl
+                })
+            });
+            if (res.ok) {
+                setContactSuccess("Informations de contact mises à jour avec succès !");
+            } else {
+                setContactSuccess("Erreur lors de la mise à jour");
+            }
+        } catch (error) {
+            setContactSuccess("Erreur de connexion");
+        }
+        setTimeout(() => setContactSuccess(""), 4000);
+    };
 
     const handlePasswordChange = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -187,19 +233,6 @@ export default function AdminSettings() {
                                     {contactSuccess && <div className="success-message mb-6">{contactSuccess}</div>}
 
                                     <div className="contact-grid">
-                                        <div className="form-group">
-                                            <label>Email Support</label>
-                                            <div className="input-wrapper">
-                                                <input
-                                                    type="email"
-                                                    className="input"
-                                                    value={contactSettings.supportEmail}
-                                                    placeholder="📧 contact@smarthealth.com"
-                                                    disabled
-                                                />
-                                            </div>
-                                            <p className="text-secondary text-xs mt-1">L'email de support ne peut pas être modifié ici.</p>
-                                        </div>
 
                                         <div className="form-group">
                                             <label>Téléphone admin</label>
@@ -276,15 +309,28 @@ export default function AdminSettings() {
                                         </div>
                                     </div>
 
-                                    <button
-                                        onClick={() => {
-                                            setContactSuccess("Informations de contact mises à jour (simulation)");
-                                            setTimeout(() => setContactSuccess(""), 4000);
-                                        }}
-                                        className="btn btn-gradient w-full mt-8"
-                                    >
-                                        Sauvegarder les modifications
-                                    </button>
+                                    <div className="form-group" style={{ marginTop: '20px', marginBottom: '30px' }}>
+                                        <label>URL Google Maps</label>
+                                        <div className="input-wrapper">
+                                            <input
+                                                type="url"
+                                                className="input"
+                                                value={contactSettings.googleMapsUrl}
+                                                onChange={(e) => setContactSettings({ ...contactSettings, googleMapsUrl: e.target.value })}
+                                                placeholder="🗺️ Lien src= Google Maps"
+                                            />
+                                        </div>
+                                        <p className="text-secondary text-xs" style={{ marginTop: '8px' }}>Insérez la valeur de l'attribut src de l'iframe Google Maps.</p>
+                                    </div>
+
+                                    <div style={{ paddingTop: '20px' }}>
+                                        <button
+                                            onClick={handleSaveContact}
+                                            className="btn btn-gradient w-full"
+                                        >
+                                            Sauvegarder les modifications
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

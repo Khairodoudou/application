@@ -1,11 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { FaPhone, FaMapMarkerAlt, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
 export default function ContactPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [settings, setSettings] = useState({
+    supportEmail: "contact@smarthealth.com",
+    adminPhone: "+33 1 23 45 67 89",
+    headOffice: "123 Rue de la Santé, Paris, France",
+    facebook: "https://facebook.com/smarthealth",
+    instagram: "https://instagram.com/smarthealth",
+    linkedin: "https://linkedin.com/company/smarthealth",
+    googleMapsUrl: ""
+  });
+
+  useEffect(() => {
+    fetch("/api/admin/settings")
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error) {
+          setSettings({
+            supportEmail: data.supportEmail || "contact@smarthealth.com",
+            adminPhone: data.adminPhone || "+33 1 23 45 67 89",
+            headOffice: data.headOffice || "123 Rue de la Santé, Paris, France",
+            facebook: data.facebook || "https://facebook.com/smarthealth",
+            instagram: data.instagram || "https://instagram.com/smarthealth",
+            linkedin: data.linkedin || "https://linkedin.com/company/smarthealth",
+            googleMapsUrl: data.googleMapsUrl || "https://www.google.com/maps?q=Alger,Algérie&t=&z=6&ie=UTF8&iwloc=&output=embed"
+          });
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="contact-page">
@@ -14,8 +43,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="nav-content">
             <Link href="/" className="logo">
-              <span className="logo-icon">🏥</span>
-              <span className="logo-text">HealthAegis</span>
+              <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -63,22 +91,11 @@ export default function ContactPage() {
               <div className="info-cards-grid">
                 <div className="contact-info-card glass">
                   <div className="card-icon-wrapper">
-                    <FaEnvelope />
-                  </div>
-                  <div className="card-details">
-                    <h3>Email Support</h3>
-                    <p>contact@smarthealth.com</p>
-                    <span className="availability">Réponse sous 24h</span>
-                  </div>
-                </div>
-
-                <div className="contact-info-card glass">
-                  <div className="card-icon-wrapper">
                     <FaPhone />
                   </div>
                   <div className="card-details">
                     <h3>Téléphone admin</h3>
-                    <p>+33 1 23 45 67 89</p>
+                    <p>{settings.adminPhone}</p>
                     <span className="availability">Lun-Ven: 9h-18h</span>
                   </div>
                 </div>
@@ -89,20 +106,21 @@ export default function ContactPage() {
                   </div>
                   <div className="card-details">
                     <h3>Siège Social</h3>
-                    <p>123 Rue de la Santé, Paris, France</p>
-                    <span className="availability">Europe / Moyen-Orient</span>
+                    <p>{settings.headOffice}</p>
+                    <span className="availability">Algérie , Annaba</span>
                   </div>
                 </div>
 
-                <div className="contact-info-card glass">
-                  <div className="card-icon-wrapper">
-                    <FaClock />
-                  </div>
-                  <div className="card-details">
-                    <h3>Urgence Technique</h3>
-                    <p>contact@smarthealth.com</p>
-                    <span className="availability">7j/7 - 24h/24 (Vip)</span>
-                  </div>
+                <div className="contact-map-card glass" style={{ gridColumn: "1 / -1", height: "300px", padding: 0, overflow: "hidden", borderRadius: "1rem", border: "1px solid var(--color-border-light)", display: "flex" }}>
+                    <iframe 
+                        title="Carte de l'Algérie"
+                        src={settings.googleMapsUrl || "https://www.google.com/maps?q=Alger,Algérie&t=&z=6&ie=UTF8&iwloc=&output=embed"}
+                        width="100%" 
+                        height="100%" 
+                        style={{ border: 0 }} 
+                        loading="lazy" 
+                        referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
                 </div>
               </div>
             </div>
@@ -113,9 +131,9 @@ export default function ContactPage() {
                 <h3>Suivez-nous</h3>
                 <p>Restez informé de nos dernières innovations en santé numérique sur nos réseaux.</p>
                 <div className="social-links">
-                  <a href="https://linkedin.com/company/smarthealth" target="_blank" rel="noopener noreferrer" className="social-btn linkedin"><FaLinkedin /></a>
-                  <a href="https://instagram.com/smarthealth" target="_blank" rel="noopener noreferrer" className="social-btn instagram"><FaInstagram /></a>
-                  <a href="https://facebook.com/smarthealth" target="_blank" rel="noopener noreferrer" className="social-btn facebook"><FaFacebook /></a>
+                  {settings.linkedin && <a href={settings.linkedin} target="_blank" rel="noopener noreferrer" className="social-btn linkedin"><FaLinkedin /></a>}
+                  {settings.instagram && <a href={settings.instagram} target="_blank" rel="noopener noreferrer" className="social-btn instagram"><FaInstagram /></a>}
+                  {settings.facebook && <a href={settings.facebook} target="_blank" rel="noopener noreferrer" className="social-btn facebook"><FaFacebook /></a>}
                 </div>
               </div>
 
@@ -162,7 +180,7 @@ export default function ContactPage() {
             <div className="faq-item card">
               <h3>Comment signaler un problème technique ?</h3>
               <p>
-                Envoyez-nous un email détaillé à contact@smarthealth.com.
+                Envoyez-nous un email détaillé à {settings.supportEmail}.
                 Une réponse vous sera adressée dans un délai de 24 heures ouvrables.
               </p>
             </div>
@@ -200,8 +218,7 @@ export default function ContactPage() {
           <div className="footer-content">
             <div className="footer-section">
               <div className="logo">
-                <span className="logo-icon">🏥</span>
-                <span className="logo-text">HealthAegis</span>
+                <Image src="/logo.png" alt="HealthAegis" width={120} height={34} className="logo-img" />
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>

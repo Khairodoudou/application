@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -13,8 +14,7 @@ export default function Home() {
         <div className="container">
           <div className="nav-content">
             <div className="logo">
-              <span className="logo-icon">🏥</span>
-              <span className="logo-text">HealthAegis</span>
+              <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
             </div>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -206,8 +206,7 @@ export default function Home() {
           <div className="footer-content">
             <div className="footer-section">
               <div className="logo">
-                <span className="logo-icon">🏥</span>
-                <span className="logo-text">HealthAegis</span>
+                <Image src="/logo.png" alt="HealthAegis" width={120} height={35} className="logo-img" />
               </div>
               <p>Votre plateforme de santé numérique intelligente</p>
             </div>
@@ -266,19 +265,13 @@ export default function Home() {
         .logo {
           display: flex;
           align-items: center;
-          gap: var(--spacing-sm);
           text-decoration: none;
         }
 
-        .logo-icon {
-          font-size: 1.5rem;
-        }
-
-        .logo-text {
-          font-size: 1.25rem;
-          font-weight: 800;
-          color: var(--color-text);
-          font-family: var(--font-display);
+        .logo :global(.logo-img) {
+          height: 40px;
+          width: auto;
+          object-fit: contain;
         }
 
         .nav-links {
