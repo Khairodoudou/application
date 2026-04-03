@@ -1,22 +1,23 @@
-import { PrismaClient } from '../../prisma/generated/client'
+import { PrismaClient } from '@prisma/client'
+import { PrismaLibSQL } from '@prisma/adapter-libsql'
+import { createClient } from '@libsql/client'
 
 const globalForPrisma = globalThis as unknown as {
-    prisma: PrismaClient | undefined
+  prisma: PrismaClient | undefined
 }
-
-// Professional singleton check to handle stale global instances during hot reload
-const CUSTOM_CLIENT_SYMBOL = Symbol.for('prisma.custom_client')
 
 const createPrismaClient = () => {
-    const client = new PrismaClient()
-        ; (client as any)[CUSTOM_CLIENT_SYMBOL] = true
-    return client
+  const libsql = createClient({
+    url: process.env.TURSO_DATABASE_URL!,
+    authToken: process.env.TURSO_AUTH_TOKEN!,
+  })
+  const adapter = new PrismaLibSQL(libsql)
+  return new PrismaClient({ adapter })
 }
 
-export const prisma = (globalForPrisma.prisma && (globalForPrisma.prisma as any)[CUSTOM_CLIENT_SYMBOL])
-    ? globalForPrisma.prisma
-    : createPrismaClient()
+export const prisma =
+  globalForPrisma.prisma ?? createPrismaClient()
 
 if (process.env.NODE_ENV !== 'production') {
-    globalForPrisma.prisma = prisma
+  globalForPrisma.prisma = prisma
 }
