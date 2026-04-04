@@ -83,6 +83,8 @@ export async function POST(request: Request) {
 
     } catch (error) {
         console.error("Login error:", error);
+        console.error("DATABASE_URL:", process.env.DATABASE_URL);
+        console.error("TURSO_URL:", process.env.TURSO_DATABASE_URL);
         return NextResponse.json(
             { error: "Une erreur est survenue lors de la connexion" },
             { status: 500 }
