@@ -298,7 +298,7 @@ export default function MedicalRecordClient({ data }: MedicalRecordClientProps) 
                                                                 <span className="doc-name">{doc.name}</span>
                                                                 <span className="doc-type">{typeInfo.label} • {new Date(doc.date).toLocaleDateString()}</span>
                                                             </div>
-                                                            <a href={doc.url} target="_blank" rel="noreferrer" className="btn-download">
+                                                            <a href={doc.url} download={doc.name || "document"} target="_blank" rel="noreferrer" className="btn-download">
                                                                 <FiDownload />
                                                             </a>
                                                         </div>

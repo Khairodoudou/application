@@ -46,7 +46,8 @@ export function AdminSidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: AdminSid
                 {/* Branding */}
                 <div className="sidebar-brand">
                     <Link href="/admin/dashboard" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/logo.png" alt="HealthAegis" style={{ height: '65px', width: 'auto', objectFit: 'contain', display: 'block' }} />
                     </Link>
                 </div>
 

@@ -303,7 +303,7 @@ export default function PatientDetailsClient({ data }: PatientDetailsClientProps
                                                                 <span className="doc-name-view">{doc.name}</span>
                                                                 <span className="doc-type-view">{typeInfo.label} • {new Date(doc.date).toLocaleDateString()}</span>
                                                             </div>
-                                                            <a href={doc.url} target="_blank" rel="noreferrer" className="btn-download-view">
+                                                            <a href={doc.url} download={doc.name || "document"} target="_blank" rel="noreferrer" className="btn-download-view">
                                                                 <FiDownload />
                                                             </a>
                                                         </div>
