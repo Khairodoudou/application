@@ -14,7 +14,8 @@ export default function Home() {
         <div className="container">
           <div className="nav-content">
             <div className="logo">
-              <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="HealthAegis" style={{ height: '65px', width: 'auto', objectFit: 'contain', display: 'block' }} />
             </div>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -268,10 +269,16 @@ export default function Home() {
           text-decoration: none;
         }
 
-        .logo :global(.logo-img) {
-          height: 40px;
+        .logo .logo-img {
+          height: 65px;
           width: auto;
           object-fit: contain;
+          display: block;
+          transition: transform 0.2s ease;
+        }
+
+        .logo:hover .logo-img {
+          transform: scale(1.04);
         }
 
         .nav-links {

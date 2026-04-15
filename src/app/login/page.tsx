@@ -68,7 +68,8 @@ export default function LoginPage() {
         <div className="container">
           <div className="nav-content">
             <Link href="/" className="logo">
-              <Image src="/logo.png" alt="HealthAegis" width={140} height={40} className="logo-img" priority />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="HealthAegis" style={{ height: '65px', width: 'auto', objectFit: 'contain', display: 'block' }} />
             </Link>
 
             <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
@@ -270,8 +271,16 @@ export default function LoginPage() {
           text-decoration: none;
         }
 
-        .navbar .logo-icon {
-          font-size: 1.5rem;
+        .navbar .logo .logo-img {
+          height: 65px;
+          width: auto;
+          object-fit: contain;
+          display: block;
+          transition: transform 0.2s ease;
+        }
+
+        .navbar .logo:hover .logo-img {
+          transform: scale(1.04);
         }
 
         .navbar .logo-text {
