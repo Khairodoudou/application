@@ -88,7 +88,7 @@ export default function PatientEditClient({ data }: PatientEditClientProps) {
     const [documents, setDocuments] = useState<MedicalDocument[]>(initialDocs);
     const [uploadingType, setUploadingType] = useState<string | null>(null);
 
-    const handleFileUpload = (type: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = async (type: string, e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
 
@@ -99,17 +99,36 @@ export default function PatientEditClient({ data }: PatientEditClientProps) {
 
         setUploadingType(type);
 
-        // Simulate upload delay
-        setTimeout(() => {
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Erreur lors du téléchargement");
+            }
+
+            const data = await response.json();
+
             const newDoc: MedicalDocument = {
                 type,
                 name: file.name,
                 date: new Date().toISOString(),
-                url: "#" // Placeholder URL since we don't have real storage
+                url: data.url // Real URL from server
             };
+            
             setDocuments(prev => [...prev, newDoc]);
+        } catch (error: any) {
+            console.error("Upload failed:", error);
+            alert(`Erreur: ${error.message}`);
+        } finally {
             setUploadingType(null);
-        }, 1500);
+        }
     };
 
     const removeDocument = (index: number) => {
