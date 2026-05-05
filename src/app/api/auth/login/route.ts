@@ -41,7 +41,15 @@ export async function POST(request: Request) {
             );
         }
 
-        // 4. Check Doctor Status
+        // 4. Check email verification
+        if (!user.emailVerified) {
+            return NextResponse.json(
+                { error: "Veuillez confirmer votre email avant de vous connecter. Vérifiez votre boîte mail." },
+                { status: 403 }
+            );
+        }
+
+        // 5. Check Doctor Status
         if (user.role === "DOCTOR") {
             if (!user.doctorProfile) {
                 return NextResponse.json(

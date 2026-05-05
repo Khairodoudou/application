@@ -33,6 +33,7 @@ export default function RegisterPage() {
   });
 
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +46,7 @@ export default function RegisterPage() {
       }
       setStep(step + 1);
     } else {
+      setIsLoading(true);
       try {
         const response = await fetch("/api/auth/register", {
           method: "POST",
@@ -61,12 +63,13 @@ export default function RegisterPage() {
         }
 
         if (formData.accountType === "doctor") {
-          router.push("/login?registered=true");
+          router.push("/auth/verify-pending?role=doctor");
         } else {
-          router.push("/patient/dashboard");
+          router.push("/auth/verify-pending?role=patient");
         }
       } catch (err: any) {
         setError(err.message);
+        setIsLoading(false);
       }
     }
   };
@@ -341,10 +344,7 @@ export default function RegisterPage() {
                     />
                   </div>
 
-                  <div className="info-box">
-                    <strong>Note importante :</strong> Votre demande d'inscription sera examinée
-                    par notre équipe. Vous recevrez un email de confirmation une fois votre compte validé.
-                  </div>
+
                 </div>
               )}
 
@@ -359,8 +359,17 @@ export default function RegisterPage() {
                     Précédent
                   </button>
                 )}
-                <button type="submit" className="btn btn-primary btn-lg">
-                  {step === 1 || (step === 2 && formData.accountType === "doctor") ? "Suivant" : "Créer mon compte"}
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-lg"
+                  disabled={isLoading}
+                  style={{ opacity: isLoading ? 0.7 : 1, cursor: isLoading ? 'wait' : 'pointer' }}
+                >
+                  {isLoading
+                    ? "Envoi en cours..."
+                    : step === 1 || (step === 2 && formData.accountType === "doctor")
+                    ? "Suivant"
+                    : "Créer mon compte"}
                 </button>
               </div>
             </form>
@@ -771,6 +780,71 @@ export default function RegisterPage() {
           border-radius: var(--radius-md);
           font-size: var(--font-size-sm);
           color: var(--color-text-secondary);
+        }
+
+        .success-overlay {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: var(--spacing-3xl) var(--spacing-xl);
+          gap: var(--spacing-lg);
+          width: 100%;
+        }
+
+        .success-icon {
+          font-size: 4rem;
+          line-height: 1;
+          filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.4));
+          animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+        }
+
+        @keyframes pop {
+          0% { transform: scale(0); opacity: 0; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-overlay h2 {
+          font-size: var(--font-size-3xl);
+          color: #1e293b;
+          margin: 0;
+        }
+
+        :global([data-theme='dark']) .success-overlay h2 {
+          color: #f8fafc;
+        }
+
+        .success-subtitle {
+          color: var(--color-text-secondary);
+          margin: 0;
+          font-size: var(--font-size-lg);
+        }
+
+        .success-note {
+          background: var(--color-warning-bg);
+          border-left: 4px solid var(--color-warning);
+          border-radius: var(--radius-md);
+          padding: var(--spacing-md) var(--spacing-lg);
+          font-size: var(--font-size-sm);
+          color: var(--color-text-secondary);
+          text-align: left;
+          line-height: 1.6;
+          max-width: 480px;
+          width: 100%;
+        }
+
+        .success-note .note-label {
+          font-weight: 700;
+          color: #92400e;
+        }
+
+        :global([data-theme='dark']) .success-note .note-label {
+          color: #fbbf24;
+        }
+
+        .success-btn {
+          margin-top: var(--spacing-md);
         }
 
         .form-actions {

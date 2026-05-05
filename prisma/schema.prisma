@@ -37,6 +37,11 @@ model User {
   phone     String?
   avatar    String? // URL to avatar image
 
+  // Email verification
+  emailVerified       Boolean   @default(false)
+  verificationToken   String?
+  verificationExpires DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -148,10 +153,13 @@ model DoctorPatient {
   familyHistory  String? // JSON array
   surgeryHistory String? // JSON array
 
-  // Vitals recorded by this doctor
+  // Vitals (Current values)
   bloodPressure String?
   heartRate     Int?
   temperature   Float?
+
+  // Vitals History (JSON array of { date, bloodPressure, heartRate, temperature })
+  vitalsHistory String?
 
   // Diagnosis & Treatment by this doctor
   symptoms       String? // JSON array

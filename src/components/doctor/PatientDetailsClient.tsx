@@ -19,6 +19,7 @@ const DOCUMENT_TYPES = {
 
 export default function PatientDetailsClient({ data }: PatientDetailsClientProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [showVitalsHistory, setShowVitalsHistory] = useState(false);
 
     // Safely handle data
     const patient = data.patient || {};
@@ -28,6 +29,14 @@ export default function PatientDetailsClient({ data }: PatientDetailsClientProps
     // Helper for isolated vs shared fields
     // Clinical data is now in doctorPatient
     const clinical = doctorPatient;
+
+    // Parse vitals history
+    const vitalsHistory = (() => {
+        try {
+            const parsed = JSON.parse(clinical.vitalsHistory || "[]");
+            return Array.isArray(parsed) ? parsed : [];
+        } catch { return []; }
+    })();
 
     // Parse documents
     const documents = (() => {
@@ -139,8 +148,15 @@ export default function PatientDetailsClient({ data }: PatientDetailsClientProps
                         <div className="card-header">
                             <FiActivity />
                             <h2>Dernières Constantes</h2>
+                            <button
+                                className={`history-toggle-btn ${showVitalsHistory ? 'active' : ''}`}
+                                onClick={() => setShowVitalsHistory(v => !v)}
+                            >
+                                📋 {showVitalsHistory ? 'Masquer' : 'Historique'}
+                            </button>
                         </div>
                         <div className="card-content">
+                            {/* Current vitals */}
                             <div className="vitals-grid">
                                 <div className="vital-item">
                                     <label>Tension Artérielle</label>
@@ -164,6 +180,42 @@ export default function PatientDetailsClient({ data }: PatientDetailsClientProps
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Vitals History */}
+                            {showVitalsHistory && (
+                                <div className="vitals-history-section animate-fade-in">
+                                    <div className="history-title">
+                                        <FiActivity /> Historique des mesures
+                                    </div>
+                                    {vitalsHistory.length === 0 ? (
+                                        <p className="no-history">Aucune mesure archivée pour le moment.</p>
+                                    ) : (
+                                        <div className="history-table-wrapper">
+                                            <table className="history-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>📅 Date</th>
+                                                        <th>🩸 Tension (mmHg)</th>
+                                                        <th>💓 Pouls (bpm)</th>
+                                                        <th>🌡️ Temp. (°C)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {vitalsHistory.map((entry: any, idx: number) => (
+                                                        <tr key={idx} className={idx === 0 ? 'latest-row' : ''}>
+                                                            <td>{new Date(entry.date).toLocaleString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+                                                            <td><span className="vital-badge bp">{entry.bloodPressure || '--'}</span></td>
+                                                            <td><span className="vital-badge hr">{entry.heartRate || '--'}</span></td>
+                                                            <td><span className="vital-badge temp">{entry.temperature || '--'}</span></td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
                             <div className="physical-stats mt-4">
                                 <div className="stat-box">
                                     <label>Taille</label>
@@ -176,6 +228,7 @@ export default function PatientDetailsClient({ data }: PatientDetailsClientProps
                             </div>
                         </div>
                     </div>
+
 
                     {/* 3. DIAGNOSTIC & TRAITEMENT */}
                     <div className="card glass full-width">
@@ -347,7 +400,25 @@ export default function PatientDetailsClient({ data }: PatientDetailsClientProps
                 
                 .card-header { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-light); }
                 .card-header svg { font-size: 1.4rem; color: var(--color-primary); }
-                .card-header h2 { font-size: 1.1rem; font-weight: 600; margin: 0; color: var(--color-text); }
+                .card-header h2 { font-size: 1.1rem; font-weight: 600; margin: 0; color: var(--color-text); flex: 1; }
+
+                .history-toggle-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--color-border); background: var(--color-bg-secondary); color: var(--color-text-secondary); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+                .history-toggle-btn:hover, .history-toggle-btn.active { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+
+                .vitals-history-section { margin-top: 16px; border-top: 1px dashed var(--color-border-light); padding-top: 16px; }
+                .history-title { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text-secondary); margin-bottom: 12px; }
+                .history-table-wrapper { overflow-x: auto; border-radius: 10px; border: 1px solid var(--color-border-light); }
+                .history-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+                .history-table th { background: var(--color-bg-secondary); color: var(--color-text-tertiary); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--color-border-light); }
+                .history-table td { padding: 10px 14px; border-bottom: 1px solid var(--color-border-light); color: var(--color-text); vertical-align: middle; }
+                .history-table tr:last-child td { border-bottom: none; }
+                .history-table tr:hover td { background: var(--color-bg-secondary); }
+                .latest-row td { background: hsla(210, 100%, 56%, 0.04); font-weight: 600; }
+                .vital-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; }
+                .vital-badge.bp { background: hsla(210, 100%, 56%, 0.12); color: #2563eb; }
+                .vital-badge.hr { background: hsla(142, 71%, 45%, 0.12); color: #16a34a; }
+                .vital-badge.temp { background: hsla(38, 92%, 50%, 0.12); color: #d97706; }
+                .no-history { color: var(--color-text-tertiary); font-style: italic; font-size: 0.9rem; padding: 12px 0; }
                 
                 .card-content { display: flex; flex-direction: column; gap: 16px; }
                 

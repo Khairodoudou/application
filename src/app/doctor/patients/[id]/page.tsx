@@ -32,6 +32,7 @@ export default async function PatientDetails({ params }: { params: Promise<{ id:
             bloodPressure: true,
             heartRate: true,
             temperature: true,
+            vitalsHistory: true,
             symptoms: true,
             diagnosis: true,
             treatmentPlan: true,

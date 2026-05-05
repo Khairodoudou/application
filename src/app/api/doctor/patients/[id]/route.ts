@@ -20,10 +20,17 @@ export async function PATCH(
         const doctorId = (session as any).userId;
         const patientId = id;
 
-        // Verify doctor-patient relationship
+        // Verify doctor-patient relationship AND fetch current vitals for comparison
         const relationship = await prisma.doctorPatient.findUnique({
             where: {
                 doctorId_patientId: { doctorId, patientId }
+            },
+            select: {
+                id: true,
+                bloodPressure: true,
+                heartRate: true,
+                temperature: true,
+                vitalsHistory: true,
             }
         });
 
@@ -121,7 +128,38 @@ export async function PATCH(
             }
         }
 
-        // 3. Update DoctorPatient (Private Medical Record + earliest next consultation)
+        // 3. Archive vitals history if any vital changed
+        const currentBP   = relationship.bloodPressure ?? null;
+        const currentHR   = relationship.heartRate ?? null;
+        const currentTemp = relationship.temperature ?? null;
+
+        const newBP   = bloodPressure || null;
+        const newHR   = heartRate ? parseInt(heartRate) : null;
+        const newTemp = temperature ? parseFloat(temperature) : null;
+
+        const vitalChanged =
+            (newBP   !== null && newBP   !== currentBP) ||
+            (newHR   !== null && newHR   !== currentHR) ||
+            (newTemp !== null && newTemp !== currentTemp);
+
+        let updatedHistory = [];
+        try {
+            const existing = (relationship as any).vitalsHistory;
+            updatedHistory = existing ? JSON.parse(existing) : [];
+        } catch { updatedHistory = []; }
+
+        if (vitalChanged) {
+            updatedHistory.unshift({
+                date:          new Date().toISOString(),
+                bloodPressure: newBP   ?? currentBP,
+                heartRate:     newHR   ?? currentHR,
+                temperature:   newTemp ?? currentTemp,
+            });
+            // Keep last 50 entries max
+            if (updatedHistory.length > 50) updatedHistory = updatedHistory.slice(0, 50);
+        }
+
+        // 4. Update DoctorPatient (Private Medical Record + earliest next consultation)
         await prisma.doctorPatient.update({
             where: {
                 doctorId_patientId: { doctorId, patientId }
@@ -140,6 +178,7 @@ export async function PATCH(
                 bloodPressure,
                 heartRate: heartRate ? parseInt(heartRate) : undefined,
                 temperature: temperature ? parseFloat(temperature) : undefined,
+                vitalsHistory: JSON.stringify(updatedHistory),
                 symptoms: symptoms ? toJson(symptoms) : undefined,
                 diagnosis,
                 treatmentPlan: treatmentPlan ? toJson(treatmentPlan) : undefined,

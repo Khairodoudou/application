@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { hashPassword, createSession } from "@/lib/auth";
+import { sendVerificationEmail } from "@/lib/email";
+import crypto from "crypto";
 
 export async function POST(request: Request) {
     try {
@@ -37,9 +39,12 @@ export async function POST(request: Request) {
         // 2. Hash password
         const hashedPassword = await hashPassword(password);
 
-        // 3. Create User & Profile
-        const role = accountType === "doctor" ? "DOCTOR" : "PATIENT";
+        // 3. Générer le token de vérification
+        const verificationToken = crypto.randomBytes(32).toString('hex');
+        const verificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
 
+        // 4. Create User & Profile
+        const role = accountType === "doctor" ? "DOCTOR" : "PATIENT";
         let user;
 
         if (role === "DOCTOR") {
@@ -51,6 +56,9 @@ export async function POST(request: Request) {
                     firstName,
                     lastName,
                     phone,
+                    emailVerified: false,
+                    verificationToken,
+                    verificationExpires,
                     doctorProfile: {
                         create: {
                             specialty,
@@ -70,6 +78,9 @@ export async function POST(request: Request) {
                     firstName,
                     lastName,
                     phone,
+                    emailVerified: false,
+                    verificationToken,
+                    verificationExpires,
                     healthProfile: {
                         create: {
                             diet: diet || "Aucun",
@@ -79,16 +90,21 @@ export async function POST(request: Request) {
             });
         }
 
-        // 4. Create Session (Only for Patients)
-        if (role === "PATIENT") {
-            await createSession({ userId: user.id, role: user.role });
+        // 5. Envoyer l'email de vérification (non bloquant)
+        const emailRole = role === "DOCTOR" ? "doctor" : "patient";
+        try {
+            await sendVerificationEmail(email, verificationToken, emailRole);
+            console.log(`✅ Email de vérification envoyé à ${email}`);
+        } catch (emailError: any) {
+            // L'email a échoué mais le compte est créé — on log et on continue
+            console.error("⚠️ Échec envoi email de vérification:", emailError.message);
         }
 
+        // 6. Ne pas créer de session — compte non vérifié
         return NextResponse.json({
             success: true,
-            userId: user.id,
+            requiresEmailVerification: true,
             role: user.role,
-            requiresApproval: role === "DOCTOR"
         });
 
     } catch (error: any) {
