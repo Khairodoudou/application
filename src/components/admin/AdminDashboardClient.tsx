@@ -101,6 +101,8 @@ export default function AdminDashboardClient({ stats: initialStats, pendingDocto
     }, []);
 
     // Pagination logic for pending doctors
+        // Pagination logic for pending doctors
+
     const totalPages = Math.ceil(pendingDoctors.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedDoctors = pendingDoctors.slice(startIndex, startIndex + itemsPerPage);
