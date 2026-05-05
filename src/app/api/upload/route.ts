@@ -23,10 +23,10 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Seuls les fichiers PDF sont acceptés" }, { status: 400 });
         }
 
-        // Validate file size (max 10 MB)
-        const MAX_SIZE = 10 * 1024 * 1024;
+        // Validate file size (max 50 MB)
+        const MAX_SIZE = 50 * 1024 * 1024;
         if (file.size > MAX_SIZE) {
-            return NextResponse.json({ error: "Fichier trop volumineux (max 10 Mo)" }, { status: 400 });
+            return NextResponse.json({ error: "Fichier trop volumineux (max 50 Mo)" }, { status: 400 });
         }
 
         // Create unique filename to prevent collisions
