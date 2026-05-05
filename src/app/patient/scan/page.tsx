@@ -264,7 +264,7 @@ export default function ScanPage() {
               >
                 <span className="method-icon">✍️</span>
                 <div className="method-info">
-                  <h3>Saisie Médicale</h3>
+                  <h3>Votre Assistant Intelligent</h3>
                   <p>Décrivez vos symptômes (ClinicalBERT)</p>
                 </div>
               </button>
@@ -374,7 +374,7 @@ export default function ScanPage() {
                   <div className="scan-visual">
                     <div className="scan-icon-large gradient-accent">🩺</div>
                   </div>
-                  <h2>Saisie Médicale</h2>
+                  <h2>Votre Assistant Intelligent</h2>
                   <p>Décrivez vos symptômes, leur durée et vos antécédents pour une pré-analyse médicale par notre IA.</p>
 
                   <form onSubmit={handleManualScan} className="scan-form">
