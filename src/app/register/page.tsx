@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -99,6 +100,7 @@ export default function RegisterPage() {
               <Link href="/" onClick={() => setIsMenuOpen(false)}>Accueil</Link>
               <Link href="/about" onClick={() => setIsMenuOpen(false)}>À propos</Link>
               <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+              <ThemeToggle />
               <Link href="/login" className="btn btn-secondary" onClick={() => setIsMenuOpen(false)}>
                 Connexion
               </Link>

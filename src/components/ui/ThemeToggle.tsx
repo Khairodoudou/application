@@ -2,7 +2,7 @@
 
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { useEffect, useState } from "react";
-import { FiMonitor, FiMoon, FiSun } from "react-icons/fi";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
@@ -13,74 +13,49 @@ export function ThemeToggle() {
     }, []);
 
     if (!mounted) {
-        return <div className="theme-toggle-wrapper" style={{ minHeight: "42px", minWidth: "220px" }}></div>;
+        return <div className="theme-toggle-single" style={{ width: "40px", height: "40px", borderRadius: "50%" }}></div>;
     }
 
+    const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    const toggleTheme = () => {
+        setTheme(isDark ? "light" : "dark");
+    };
+
     return (
-        <div className="theme-toggle-wrapper">
+        <>
             <button
-                onClick={() => setTheme("light")}
-                className={`theme-btn ${theme === "light" ? "active" : ""}`}
-                title="Mode Clair"
+                onClick={toggleTheme}
+                className="theme-toggle-single"
+                title={isDark ? "Passer au mode clair" : "Passer au mode sombre"}
+                aria-label="Basculer le thème"
             >
-                <FiSun />
-                <span>Clair</span>
-            </button>
-            <button
-                onClick={() => setTheme("dark")}
-                className={`theme-btn ${theme === "dark" ? "active" : ""}`}
-                title="Mode Sombre"
-            >
-                <FiMoon />
-                <span>Sombre</span>
-            </button>
-            <button
-                onClick={() => setTheme("system")}
-                className={`theme-btn ${theme === "system" ? "active" : ""}`}
-                title="Système"
-            >
-                <FiMonitor />
-                <span>Système</span>
+                {isDark ? <FiSun size={20} /> : <FiMoon size={20} />}
             </button>
 
             <style jsx>{`
-                .theme-toggle-wrapper {
-                    display: flex;
-                    gap: 8px;
-                    background: var(--color-bg-secondary);
-                    padding: 4px;
-                    border-radius: var(--radius-lg);
-                    border: 1px solid var(--color-border);
-                    width: fit-content;
-                }
-
-                .theme-btn {
+                .theme-toggle-single {
                     display: flex;
                     align-items: center;
-                    gap: 6px;
-                    padding: 8px 12px;
-                    border-radius: var(--radius-md);
-                    border: none;
-                    background: transparent;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: var(--radius-full, 50%);
+                    border: 1px solid var(--color-border);
+                    background: var(--color-bg-secondary);
                     color: var(--color-text-secondary);
-                    font-size: 0.9rem;
-                    font-weight: 500;
                     cursor: pointer;
                     transition: all 0.2s ease;
                 }
 
-                .theme-btn:hover {
-                    color: var(--color-text);
-                    background: hsla(0, 0%, 50%, 0.1);
-                }
-
-                .theme-btn.active {
-                    background: var(--color-bg);
+                .theme-toggle-single:hover {
                     color: var(--color-primary);
+                    background: var(--color-bg);
+                    border-color: var(--color-primary);
+                    transform: translateY(-2px);
                     box-shadow: var(--shadow-sm);
-                    font-weight: 600;
                 }
             `}</style>
-        </div>
+        </>
     );
 }

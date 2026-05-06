@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FaPhone, FaMapMarkerAlt, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
@@ -51,6 +52,7 @@ export default function ContactPage() {
               <Link href="/">Accueil</Link>
               <Link href="/about">À propos</Link>
               <Link href="/contact">Contact</Link>
+              <ThemeToggle />
               <Link href="/login" className="btn btn-secondary">Connexion</Link>
               <Link href="/register" className="btn btn-primary">S'inscrire</Link>
             </div>
