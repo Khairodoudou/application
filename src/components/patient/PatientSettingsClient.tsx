@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { PatientSidebar } from "./PatientSidebar";
 import {
@@ -22,6 +23,7 @@ type PatientSettingsProps = {
 };
 
 export default function PatientSettingsClient({ patient }: PatientSettingsProps) {
+    const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ type: "", text: "" });
@@ -138,9 +140,14 @@ export default function PatientSettingsClient({ patient }: PatientSettingsProps)
             const data = await response.json();
             if (!response.ok) throw new Error(data.error);
 
-            setMessage({ type: "success", text: "Mot de passe modifié avec succès" });
+            setMessage({ type: "success", text: "Mot de passe modifié avec succès. Reconnexion en cours..." });
             setPasswords({ current: "", new: "", confirm: "" });
-            setTimeout(() => setMessage({ type: "", text: "" }), 3000);
+            // Redirect to login — session was invalidated server-side
+            if (data.requiresRelogin) {
+                setTimeout(() => router.push("/login"), 2000);
+            } else {
+                setTimeout(() => setMessage({ type: "", text: "" }), 3000);
+            }
         } catch (err: any) {
             setMessage({ type: "error", text: err.message });
         } finally {
@@ -313,8 +320,11 @@ export default function PatientSettingsClient({ patient }: PatientSettingsProps)
                                             onChange={(e) => setPasswords({ ...passwords, new: e.target.value })}
                                             className="input"
                                             required
-                                            minLength={6}
+                                            minLength={8}
                                         />
+                                        <span style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                                            Min. 8 caractères, 1 majuscule, 1 chiffre, 1 symbole
+                                        </span>
                                     </div>
                                     <div className="input-group">
                                         <label>Confirmer le nouveau mot de passe</label>
@@ -325,7 +335,7 @@ export default function PatientSettingsClient({ patient }: PatientSettingsProps)
                                             onChange={(e) => setPasswords({ ...passwords, confirm: e.target.value })}
                                             className="input"
                                             required
-                                            minLength={6}
+                                            minLength={8}
                                         />
                                     </div>
                                 </div>

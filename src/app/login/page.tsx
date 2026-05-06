@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,10 +16,13 @@ export default function LoginPage() {
   });
 
   const [error, setError] = useState("");
+  const [isVerificationError, setIsVerificationError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsVerificationError(false);
 
     if (!formData.email || !formData.password) {
       setError("Veuillez remplir tous les champs");
@@ -48,6 +52,10 @@ export default function LoginPage() {
         }
       } else {
         setError(data.error || "Une erreur est survenue");
+        // Flag email-verification errors so we can show the resend link
+        if (data.error && data.error.includes("confirmer votre email")) {
+          setIsVerificationError(true);
+        }
       }
     } catch (err) {
       setError("Une erreur de connexion est survenue");
@@ -128,6 +136,16 @@ export default function LoginPage() {
             {error && (
               <div className="error-message">
                 ⚠ {error}
+                {isVerificationError && (
+                  <div style={{ marginTop: '10px' }}>
+                    <a
+                      href={`/auth/verify-pending?email=${encodeURIComponent(formData.email)}`}
+                      style={{ color: '#2563eb', fontWeight: 600, fontSize: '13px', textDecoration: 'underline' }}
+                    >
+                      📧 Renvoyer l'email de confirmation
+                    </a>
+                  </div>
+                )}
               </div>
             )}
 
@@ -163,17 +181,44 @@ export default function LoginPage() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Mot de passe</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="input"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  placeholder="••••••••"
-                />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <label htmlFor="password">Mot de passe</label>
+                  <a href="/forgot-password" className="forgot-link">Mot de passe oublié ?</a>
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    className="input"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    placeholder="••••••••"
+                    style={{ paddingRight: '40px', width: '100%' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: '10px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: 'var(--color-text-secondary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '4px'
+                    }}
+                    aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                  >
+                    {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                  </button>
+                </div>
               </div>
 
               <button type="submit" className="btn btn-primary btn-lg btn-full">
